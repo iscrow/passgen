@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/env bash
 
 #Usage:
 #passgen    #prints out a 3 word long password
