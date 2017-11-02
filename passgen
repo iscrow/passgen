@@ -1,8 +1,10 @@
-#!/bin/env bash
+#!/usr/bin/bash
 
-#Usage:
-#passgen    #prints out a 3 word long password
-#passgen 5  #prints a 5 word long password
+## Usage:
+#passgen words delimiter minlength
+#passgen : CorrectHorseBattery
+#passgen 4 + : Correct+Horse+Battery+Staple
+#passgen 4 + 20 : Correct+Horse+Battery+Staple #Ensures the generated password is at least 20 characters long
 
 function passGen {
 
@@ -13,6 +15,8 @@ function passGen {
   [ "$3" ] && min=$3   || min=16
 
   while [ "$(echo $pass | wc -m)" -le $min ]; do #Make sure th passwords are not too short
+    #Use an alternate perl based shuffle on systems without the shuf command
+    #pass=$(echo "$words" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | head -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
     pass=$(echo "$words" | shuf -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
   done
   echo $pass
