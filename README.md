@@ -1,6 +1,6 @@
 # passgen
 
-A simple password generator. It picks several (defaults to 3) words from a word list and presents them as a password.
+A simple password generator. It chooses several (defaults to 3) words from a word list and presents them as a password.
 
 ## Usage:
 
