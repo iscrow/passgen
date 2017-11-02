@@ -18,6 +18,11 @@ function passGen {
     #Use an alternate perl based shuffle on systems without the shuf command
     #pass=$(echo "$words" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | head -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
     pass=$(echo "$words" | shuf -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
+    count=$(($count+1))
+    if [ "$count" -gt 500 ]; then
+      echo "The search for password composed of $len word(s), '$delim' delimiter and minimum length $min failed. Exiting..."
+      exit
+    fi
   done
   echo $pass
 }
