@@ -10,8 +10,9 @@ function passGen {
 
   [ "$1" ] && len=$1   || len=3
   [ "$2" ] && delim=$2 || delim=""
+  [ "$3" ] && min=$3   || min=16
 
-  while [ "$(echo $pass | wc -m)" -le 16 ]; do #Make sure th passwords are not too short
+  while [ "$(echo $pass | wc -m)" -le $min ]; do #Make sure th passwords are not too short
     pass=$(echo "$words" | shuf -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
   done
   echo $pass
