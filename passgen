@@ -15,15 +15,14 @@ function passGen {
   words="$wordslong\n$wordsmedium" #Use this to change what word lists are used
   attempts=50
   
-  if [ $(which shuf 2>/dev/null) ]; then
-    shuffle="shuf"	  
-  else
-    shuffle="perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);'"
-  fi
-
   while [ "$(echo $pass | wc -m)" -le $min ]; do #Make sure th passwords are not too short
     #Use an alternate perl based shuffle on systems without the shuf command
-    pass=$(echo "$words" | $shuffle | head -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
+    if [ $(which shuf 2>/dev/null) ]; then
+      pass=$(echo "$words" | shuf -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
+    else
+      pass=$(echo "$words" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | head -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
+    fi
+
     count=$(($count+1))
     if [ "$count" -gt $attempts ]; then
       echo "The search for password composed of $len word(s), '$delim' delimiter and minimum length $min failed. Exiting..."
