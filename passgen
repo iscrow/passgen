@@ -18,9 +18,9 @@ function passGen {
   while [ "$(echo $pass | wc -m)" -le $min ]; do #Make sure th passwords are not too short
     #Use an alternate perl based shuffle on systems without the shuf command
     if [ $(which shuf 2>/dev/null) ]; then
-      pass=$(echo "$words" | shuf -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
+      pass=$(echo "$words" | shuf -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'"$delim"'/g')
     else
-      pass=$(echo "$words" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | head -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'${delim}'/g')
+      pass=$(echo "$words" | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' | head -n$len | sed -r 's/^([a-z])/\U\1/g' | sed -e ':a;N;$!ba;s/\n/'"${delim}"'/g')
     fi
 
     count=$(($count+1))
