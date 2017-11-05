@@ -13,3 +13,5 @@ A simple password generator. It chooses several (defaults to 3) words from a wor
 
 The wordfile is a list of over 7500 medium and long non-vulgar words obtained from:
 https://github.com/first20hours/google-10000-english/
+
+I continue to remove words that could be offensive to some. Please feel free to contribute with suggestions for words that you find less than appropriate.
