@@ -6,15 +6,14 @@ types="delimiter, noun, adjective, verb_base, verb_past, verb_pastparticipate, v
 delimiters=$(echo $delimiters | tr ' ' '\n')
 
 usage="
-Usage:
-passgen [<pattern>]
+passgen [pattern]
 pattern can be any space delimited combination of:
 delimiter, noun, adjective, verb_base, verb_past, verb_pastparticipate, verb_ies, verb_ing
-For capital letters use Noun, Adjective, Verb_base, etc.
+For capital lettrs use Noun, Adjective, Verb_base, etc.
 
 The different verb forms are as follows:
-verb_base   verb_past  verb_pastparticiple  verb_ies  verb_ing
-forsake	    forsook	   forsaken	            forsakes	forsaking
+verb_base  verb_past  verb_pastparticiple  verb_ies  verb_ing
+forsake    forsook    forsaken             forsakes  forsaking
 
 Examples:
 
