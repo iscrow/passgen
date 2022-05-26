@@ -25,11 +25,18 @@ By using the word delimiter, passgen will chose one for you. Alternatively speci
 passgen 'verb_ing - adjective - noun'
 "
 
-templates="
+nonum_templates="
 adjective delimiter adjective delimiter noun
 noun delimiter verb_ies delimiter noun
 adjective delimiter verb_pastparticiple delimiter noun
 verb_ing delimiter adjective delimiter noun
+"
+
+templates="
+number adjective delimiter adjective delimiter noun
+noun number delimiter verb_ies delimiter noun
+adjective delimiter verb_pastparticiple number delimiter noun
+verb_ing delimiter adjective delimiter noun number
 "
 
 function help {
@@ -88,6 +95,8 @@ function passGen {
 				Verb_ies) pass+=$(random "$verb_ies" | capitalize);;
 				verb_ing) pass+=$(random "$verb_ing");;
 				Verb_ing) pass+=$(random "$verb_ing" | capitalize);;
+				number) pass+=$(random "$number");;
+				Number) pass+=$(random "$number");;
 				*) pass+=$type;;
 			esac
 		done
@@ -103,6 +112,18 @@ function passGen {
   echo $pass
 }
 
+number="
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+"
 
 noun="
 aardvark
