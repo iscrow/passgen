@@ -67,7 +67,8 @@ function passGen {
 	[[ "${1,,}" =~ ^(-h|--help)$ ]] && help
 
 	delim=$(random "$delimiters")
-	capitalize=$(random $'true\nfalse')
+	#capitalize=$(random $'true\nfalse')
+	capitalize="true"
 	template=$*
 	havetemplate=$*
 	[ "$template" ] || template=$(random "$templates")
