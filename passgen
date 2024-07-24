@@ -2,13 +2,13 @@
 
 delimiters="- _ + : = | ~"
 min=16
-types="delimiter, noun, adjective, verb_base, verb_past, verb_pastparticipate, verb_ies, verb_ing"
+types="delimiter, noun, plural_noun, adjective, verb_base, verb_past, verb_pastparticipate, verb_ies, verb_ing"
 delimiters=$(echo $delimiters | tr ' ' '\n')
 
 usage="
 passgen [pattern]
 pattern can be any space delimited combination of:
-delimiter, noun, adjective, verb_base, verb_past, verb_pastparticipate, verb_ies, verb_ing
+delimiter, noun, plural_noun, adjective, verb_base, verb_past, verb_pastparticipate, verb_ies, verb_ing
 For capital lettrs use Noun, Adjective, Verb_base, etc.
 
 The different verb forms are as follows:
@@ -22,7 +22,7 @@ passgen 'Noun delimiter Verb_ies delimiter Noun'
 
 By using the word delimiter, passgen will chose one for you. Alternatively specify your own:
 
-passgen 'verb_ing - adjective - noun'
+passgen 'verb_ing - adjective - plural_noun'
 "
 
 nonum_templates="
